@@ -5,23 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HéricaHair | Transformação Capilar</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💇‍♀️</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- Logo pequena na navbar -->
+            <div class="navbar-logo">
+                <img src="logoH.jpeg" alt="HéricaHair" class="navbar-logo-img" 
+                     onerror="this.style.display='none'; document.querySelector('.navbar-logo-fallback').style.display='flex';">
+                <div class="navbar-logo-fallback">HH</div>
+            </div>
+            
+            <!-- Menu de navegação -->
+            <ul class="navbar-menu">
+                <li><a href="#trabalhos">Transformações</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#localizacao">Localização</a></li>
+                <li><a href="https://wa.me/5511971289836" target="_blank" class="nav-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Agendar
+                </a></li>
+            </ul>
+            
+            <!-- Menu hamburguer para mobile -->
+            <button class="navbar-toggle" id="navbarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
     <!-- HERO SECTION -->
     <div class="hero">
         <div class="hero-bg"></div>
         
         <div class="hero-content">
-            <!-- LOGO -->
+            <!-- Logo central -->
             <div class="logo-container">
                 <img src="logoH.jpeg" alt="HéricaHair" class="logo-img" id="logo-img">
                 <div class="logo-fallback" id="logo-fallback">HH</div>
             </div>
             
-            <h1 class="gold">HéricaHair</h1>
+            <!-- Título com fonte caligráfica -->
+            <h1 class="caligrafia">HéricaHair</h1>
             <p class="hero-tagline">Transformação Capilar Profissional</p>
             <p class="hero-subtitle">Resultados que realçam sua beleza natural</p>
             
@@ -42,15 +70,21 @@
                 <!-- EXEMPLO 1 -->
                 <div class="antes-depois-item">
                     <div class="antes-depois-imagens">
-                        <div class="imagem-container">
+                        <div class="imagem-container" onclick="abrirLightbox('antes1.jpg', 'Reconstrução Capilar - Antes')">
                             <span class="imagem-label">ANTES</span>
                             <img src="antes1.jpg" alt="Antes - Reconstrução Capilar" class="local-image" 
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
                         </div>
-                        <div class="imagem-container">
+                        <div class="imagem-container" onclick="abrirLightbox('depois1.jpg', 'Reconstrução Capilar - Depois')">
                             <span class="imagem-label">DEPOIS</span>
                             <img src="depois1.jpg" alt="Depois - Reconstrução Capilar" class="local-image"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
                         </div>
                     </div>
                     <div class="antes-depois-info">
@@ -62,15 +96,21 @@
                 <!-- EXEMPLO 2 -->
                 <div class="antes-depois-item">
                     <div class="antes-depois-imagens">
-                        <div class="imagem-container">
+                        <div class="imagem-container" onclick="abrirLightbox('antes2.jpg', 'Colorimetria - Antes')">
                             <span class="imagem-label">ANTES</span>
                             <img src="antes2.jpg" alt="Antes - Colorimetria" class="local-image"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1526417501783-5d375490ad1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
                         </div>
-                        <div class="imagem-container">
+                        <div class="imagem-container" onclick="abrirLightbox('depois2.jpg', 'Colorimetria - Depois')">
                             <span class="imagem-label">DEPOIS</span>
                             <img src="depois2.jpg" alt="Depois - Colorimetria" class="local-image"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
                         </div>
                     </div>
                     <div class="antes-depois-info">
@@ -82,15 +122,21 @@
                 <!-- EXEMPLO 3 -->
                 <div class="antes-depois-item">
                     <div class="antes-depois-imagens">
-                        <div class="imagem-container">
+                        <div class="imagem-container" onclick="abrirLightbox('antes3.jpg', 'Progressiva - Antes')">
                             <span class="imagem-label">ANTES</span>
                             <img src="antes3.jpg" alt="Antes - Progressiva" class="local-image"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519690889869-e705e59f72e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
                         </div>
-                        <div class="imagem-container">
+                        <div class="imagem-container" onclick="abrirLightbox('depois3.jpg', 'Progressiva - Depois')">
                             <span class="imagem-label">DEPOIS</span>
                             <img src="depois3.jpg" alt="Depois - Progressiva" class="local-image"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
                         </div>
                     </div>
                     <div class="antes-depois-info">
@@ -102,15 +148,21 @@
                 <!-- EXEMPLO 4 -->
                 <div class="antes-depois-item">
                     <div class="antes-depois-imagens">
-                        <div class="imagem-container">
+                        <div class="imagem-container" onclick="abrirLightbox('antes4.jpg', 'Corte - Antes')">
                             <span class="imagem-label">ANTES</span>
                             <img src="antes4.jpg" alt="Antes - Corte" class="local-image"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
                         </div>
-                        <div class="imagem-container">
+                        <div class="imagem-container" onclick="abrirLightbox('depois4.jpg', 'Corte - Depois')">
                             <span class="imagem-label">DEPOIS</span>
                             <img src="depois4.jpg" alt="Depois - Corte" class="local-image"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
                         </div>
                     </div>
                     <div class="antes-depois-info">
@@ -201,6 +253,12 @@
     <!-- FOOTER -->
     <footer>
         <div class="container">
+            <!-- Logo estendida no footer -->
+            <div class="footer-logo-container">
+                <div class="footer-logo-text caligrafia">HéricaHair</div>
+                <p class="footer-slogan">Beleza & Transformação Capilar</p>
+            </div>
+            
             <div class="redes-sociais">
                 <a class="rede-social" href="https://www.instagram.com/_herica.hair_/" target="_blank" title="Instagram">
                     <i class="fab fa-instagram"></i>
@@ -209,10 +267,6 @@
                     <i class="fab fa-whatsapp"></i>
                 </a>
             </div>
-            
-            <p style="font-size: 1.1rem; margin: 20px 0; color: var(--gold2);">
-                <strong>Hérica Vanessa • Cabeleireira Especialista</strong>
-            </p>
             
             <p>© 2026 • HéricaHair • Transformação Capilar</p>
             <p style="margin-top: 10px; font-size: 0.9rem;">Telefone: (11) 97128-9836</p>
@@ -224,17 +278,13 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- MENU DE NAVEGAÇÃO -->
-    <div class="nav-mobile">
-        <a class="nav-item" href="#trabalhos" title="Transformações">
-            <i class="fas fa-images"></i>
-        </a>
-        <a class="nav-item" href="#sobre" title="Sobre">
-            <i class="fas fa-user"></i>
-        </a>
-        <a class="nav-item" href="#localizacao" title="Localização">
-            <i class="fas fa-map-marker-alt"></i>
-        </a>
+    <!-- LIGHTBOX PARA ZOOM NAS IMAGENS -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="fecharLightbox()">&times;</button>
+            <img class="lightbox-image" id="lightbox-image" src="" alt="">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>
