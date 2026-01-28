@@ -2,29 +2,102 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🔧 HéricaHair - Site carregado');
     
-    // Menu hamburguer para mobile
+    // Menu hamburguer para mobile - ANIMAÇÃO MAIS FLUIDA
     const navbarToggle = document.getElementById('navbarToggle');
-    const navbarMenu = document.querySelector('.navbar-menu');
+    const navbarMenu = document.getElementById('navbarMenu');
     
     if (navbarToggle && navbarMenu) {
+        let isAnimating = false;
+        
         navbarToggle.addEventListener('click', function() {
-            navbarMenu.classList.toggle('active');
-            navbarToggle.innerHTML = navbarMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            if (navbarMenu.classList.contains('active')) {
+                // Fechar menu com animação
+                navbarMenu.style.transform = 'translateY(0)';
+                navbarMenu.style.opacity = '1';
+                
+                setTimeout(() => {
+                    navbarMenu.style.transform = 'translateY(-100%)';
+                    navbarMenu.style.opacity = '0';
+                }, 10);
+                
+                setTimeout(() => {
+                    navbarMenu.classList.remove('active');
+                    navbarToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    navbarToggle.style.transform = 'rotate(0deg)';
+                    isAnimating = false;
+                }, 400);
+            } else {
+                // Abrir menu com animação
+                navbarMenu.classList.add('active');
+                navbarToggle.innerHTML = '<i class="fas fa-times"></i>';
+                navbarToggle.style.transform = 'rotate(90deg)';
+                
+                setTimeout(() => {
+                    navbarMenu.style.transform = 'translateY(0)';
+                    navbarMenu.style.opacity = '1';
+                    setTimeout(() => { isAnimating = false; }, 100);
+                }, 10);
+            }
+        });
+        
+        // Fechar menu ao clicar fora (somente mobile)
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth <= 768 && 
+                navbarMenu.classList.contains('active') &&
+                !navbarToggle.contains(event.target) &&
+                !navbarMenu.contains(event.target)) {
+                
+                if (isAnimating) return;
+                isAnimating = true;
+                
+                navbarMenu.style.transform = 'translateY(0)';
+                navbarMenu.style.opacity = '1';
+                
+                setTimeout(() => {
+                    navbarMenu.style.transform = 'translateY(-100%)';
+                    navbarMenu.style.opacity = '0';
+                }, 10);
+                
+                setTimeout(() => {
+                    navbarMenu.classList.remove('active');
+                    navbarToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    navbarToggle.style.transform = 'rotate(0deg)';
+                    isAnimating = false;
+                }, 400);
+            }
         });
         
         // Fechar menu ao clicar em um link
         const navLinks = navbarMenu.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                navbarMenu.classList.remove('active');
-                navbarToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                if (window.innerWidth <= 768 && navbarMenu.classList.contains('active')) {
+                    if (isAnimating) return;
+                    isAnimating = true;
+                    
+                    navbarMenu.style.transform = 'translateY(0)';
+                    navbarMenu.style.opacity = '1';
+                    
+                    setTimeout(() => {
+                        navbarMenu.style.transform = 'translateY(-100%)';
+                        navbarMenu.style.opacity = '0';
+                    }, 10);
+                    
+                    setTimeout(() => {
+                        navbarMenu.classList.remove('active');
+                        navbarToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        navbarToggle.style.transform = 'rotate(0deg)';
+                        isAnimating = false;
+                    }, 400);
+                }
             });
         });
     }
     
-    // Verificar se a logo carregou
+    // Verificar se a logo carregou - ATUALIZADO PARA PNG
     const logoImg = document.getElementById('logo-img');
     const logoFallback = document.getElementById('logo-fallback');
     
@@ -37,15 +110,18 @@ document.addEventListener('DOMContentLoaded', function() {
         logoImg.onerror = function() {
             console.log('⚠️ Logo não encontrada, usando fallback');
             if (logoFallback) logoFallback.style.display = 'flex';
-            // Tentar caminhos alternativos
+            
+            // Tentar caminhos alternativos para PNG
             setTimeout(() => {
                 const pathsToTry = [
-                    'logoH.jpeg',
-                    './logoH.jpeg',
-                    'logoH.jpg',
-                    './logoH.jpg',
-                    'logo.jpeg',
-                    './logo.jpeg'
+                    'LogoH.png',
+                    './LogoH.png',
+                    'logoH.png',
+                    './logoH.png',
+                    'LogoH.PNG',
+                    './LogoH.PNG',
+                    'logo.png',
+                    './logo.png'
                 ];
                 
                 let currentIndex = 0;
@@ -99,12 +175,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Suavizar scroll para âncoras
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
+                e.preventDefault();
                 window.scrollTo({
                     top: targetElement.offsetTop - 70,
                     behavior: 'smooth'
@@ -130,48 +206,54 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('├── index.html');
     console.log('├── style.css');
     console.log('├── script.js');
-    console.log('├── logoH.jpeg (sua logo - IMPORTANTE!)');
+    console.log('├── LogoH.png (sua logo - IMPORTANTE!)');
     console.log('├── minha-foto.png (sua foto)');
     console.log('├── antes1.jpg, depois1.jpg, etc.');
     console.log('');
-    console.log('💡 DICA: Para a logo funcionar:');
-    console.log('1. Nome exato: "logoH.jpeg" (case-sensitive)');
-    console.log('2. Na mesma pasta do index.html');
-    console.log('3. GitHub Pages pode levar 1-2 minutos para atualizar');
-    console.log('');
-    console.log('🔧 Funcionalidades:');
-    console.log('- Navbar responsiva com menu hamburguer');
-    console.log('- Lightbox para zoom nas imagens');
-    console.log('- Scroll suave');
-    console.log('- Animações ao rolar');
-    console.log('- Design totalmente responsivo');
+    console.log('🎨 DETALHES ADICIONADOS:');
+    console.log('- Fundo com elementos decorativos (tesouras, pentes, etc)');
+    console.log('- Animações fluidas no menu mobile');
+    console.log('- Lightbox corrigido para cada imagem');
+    console.log('- Design mais rico e detalhado');
 });
 
-// Funções para o Lightbox
+// Funções para o Lightbox - CORRIGIDO PARA IMAGENS INDIVIDUAIS
 function abrirLightbox(src, caption) {
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
     const lightboxCaption = document.getElementById('lightbox-caption');
     
-    // Tentar carregar imagem local primeiro
+    console.log(`Abrindo lightbox: ${src}`);
+    
+    // Mostrar lightbox imediatamente com loading
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    lightboxImage.src = '';
+    lightboxCaption.textContent = 'Carregando...';
+    
+    // Carregar imagem
     const img = new Image();
     img.onload = function() {
         lightboxImage.src = src;
         lightboxCaption.textContent = caption;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        console.log(`✅ Imagem carregada: ${src}`);
     };
     
     img.onerror = function() {
-        // Se a imagem local não carregar, usar fallback
-        const fallbackSrc = src.includes('antes') 
-            ? 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
-            : 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80';
+        console.log(`❌ Erro ao carregar: ${src}`);
+        
+        // Fallback baseado no tipo de imagem
+        let fallbackSrc;
+        if (src.includes('antes')) {
+            fallbackSrc = 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
+        } else if (src.includes('depois')) {
+            fallbackSrc = 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
+        } else {
+            fallbackSrc = 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
+        }
         
         lightboxImage.src = fallbackSrc;
         lightboxCaption.textContent = caption + ' (imagem ilustrativa)';
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
     };
     
     img.src = src;
@@ -192,7 +274,7 @@ document.addEventListener('keydown', function(e) {
 
 // Fechar lightbox clicando fora da imagem
 document.getElementById('lightbox').addEventListener('click', function(e) {
-    if (e.target === this) {
+    if (e.target === this || e.target.classList.contains('lightbox-close')) {
         fecharLightbox();
     }
 });
