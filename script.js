@@ -2,6 +2,28 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🔧 HéricaHair - Site carregado');
     
+    // Menu hamburguer para mobile
+    const navbarToggle = document.getElementById('navbarToggle');
+    const navbarMenu = document.querySelector('.navbar-menu');
+    
+    if (navbarToggle && navbarMenu) {
+        navbarToggle.addEventListener('click', function() {
+            navbarMenu.classList.toggle('active');
+            navbarToggle.innerHTML = navbarMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Fechar menu ao clicar em um link
+        const navLinks = navbarMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navbarMenu.classList.remove('active');
+                navbarToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+    }
+    
     // Verificar se a logo carregou
     const logoImg = document.getElementById('logo-img');
     const logoFallback = document.getElementById('logo-fallback');
@@ -9,15 +31,34 @@ document.addEventListener('DOMContentLoaded', function() {
     if (logoImg) {
         logoImg.onload = function() {
             console.log('✅ Logo carregada com sucesso');
-            logoFallback.style.display = 'none';
+            if (logoFallback) logoFallback.style.display = 'none';
         };
         
         logoImg.onerror = function() {
             console.log('⚠️ Logo não encontrada, usando fallback');
-            logoFallback.style.display = 'flex';
-            // Tentar com caminho relativo diferente
+            if (logoFallback) logoFallback.style.display = 'flex';
+            // Tentar caminhos alternativos
             setTimeout(() => {
-                logoImg.src = './logoH.jpeg';
+                const pathsToTry = [
+                    'logoH.jpeg',
+                    './logoH.jpeg',
+                    'logoH.jpg',
+                    './logoH.jpg',
+                    'logo.jpeg',
+                    './logo.jpeg'
+                ];
+                
+                let currentIndex = 0;
+                const tryNextPath = () => {
+                    if (currentIndex < pathsToTry.length) {
+                        console.log(`Tentando carregar: ${pathsToTry[currentIndex]}`);
+                        logoImg.src = pathsToTry[currentIndex];
+                        currentIndex++;
+                        setTimeout(tryNextPath, 500);
+                    }
+                };
+                
+                tryNextPath();
             }, 1000);
         };
     }
@@ -55,21 +96,103 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(card);
     });
     
-    // Efeito de hover nos itens antes/depois
-    const antesDepoisItems = document.querySelectorAll('.antes-depois-item');
-    antesDepoisItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
+    // Suavizar scroll para âncoras
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            }
         });
     });
     
-    console.log('🔍 Verificando caminhos das imagens:');
-    const images = document.querySelectorAll('img[src]');
-    images.forEach(img => {
-        console.log(`- ${img.src} -> ${img.alt}`);
+    // Efeito de hover nas imagens com zoom
+    const imageContainers = document.querySelectorAll('.imagem-container');
+    imageContainers.forEach(container => {
+        container.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.02)';
+        });
+        
+        container.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
     });
+    
+    // Instruções para o usuário
+    console.log('📁 ESTRUTURA DE ARQUIVOS:');
+    console.log('├── index.html');
+    console.log('├── style.css');
+    console.log('├── script.js');
+    console.log('├── logoH.jpeg (sua logo - IMPORTANTE!)');
+    console.log('├── minha-foto.png (sua foto)');
+    console.log('├── antes1.jpg, depois1.jpg, etc.');
+    console.log('');
+    console.log('💡 DICA: Para a logo funcionar:');
+    console.log('1. Nome exato: "logoH.jpeg" (case-sensitive)');
+    console.log('2. Na mesma pasta do index.html');
+    console.log('3. GitHub Pages pode levar 1-2 minutos para atualizar');
+    console.log('');
+    console.log('🔧 Funcionalidades:');
+    console.log('- Navbar responsiva com menu hamburguer');
+    console.log('- Lightbox para zoom nas imagens');
+    console.log('- Scroll suave');
+    console.log('- Animações ao rolar');
+    console.log('- Design totalmente responsivo');
+});
+
+// Funções para o Lightbox
+function abrirLightbox(src, caption) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    
+    // Tentar carregar imagem local primeiro
+    const img = new Image();
+    img.onload = function() {
+        lightboxImage.src = src;
+        lightboxCaption.textContent = caption;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+    
+    img.onerror = function() {
+        // Se a imagem local não carregar, usar fallback
+        const fallbackSrc = src.includes('antes') 
+            ? 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
+            : 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80';
+        
+        lightboxImage.src = fallbackSrc;
+        lightboxCaption.textContent = caption + ' (imagem ilustrativa)';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+    
+    img.src = src;
+}
+
+function fecharLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Fechar lightbox com ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        fecharLightbox();
+    }
+});
+
+// Fechar lightbox clicando fora da imagem
+document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) {
+        fecharLightbox();
+    }
 });
