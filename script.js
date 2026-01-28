@@ -1,17 +1,41 @@
-// script.js
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🔧 HéricaHair - Site carregado');
     
-    // Menu hamburguer para mobile - ANIMAÇÃO MAIS FLUIDA
+    // REMOVER OUTLINE DE TODOS OS ELEMENTOS INTERATIVOS AO CLICAR
+    document.addEventListener('mousedown', function() {
+        document.activeElement.blur();
+    });
+    
+    // REMOVER OUTLINE ESPECÍFICO PARA MOBILE
+    document.addEventListener('touchstart', function() {
+        document.activeElement.blur();
+    });
+    
+    // Menu hamburguer para mobile
     const navbarToggle = document.getElementById('navbarToggle');
     const navbarMenu = document.getElementById('navbarMenu');
     
     if (navbarToggle && navbarMenu) {
         let isAnimating = false;
         
-        navbarToggle.addEventListener('click', function() {
+        // REMOVER OUTLINE DO BOTÃO DO MENU
+        navbarToggle.addEventListener('mousedown', function() {
+            this.blur();
+        });
+        
+        navbarToggle.addEventListener('touchstart', function() {
+            this.blur();
+        });
+        
+        navbarToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
             if (isAnimating) return;
             isAnimating = true;
+            
+            // Remover foco do botão
+            this.blur();
             
             if (navbarMenu.classList.contains('active')) {
                 // Fechar menu com animação
@@ -73,6 +97,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Fechar menu ao clicar em um link
         const navLinks = navbarMenu.querySelectorAll('a');
         navLinks.forEach(link => {
+            // REMOVER OUTLINE DOS LINKS
+            link.addEventListener('mousedown', function() {
+                this.blur();
+            });
+            
+            link.addEventListener('touchstart', function() {
+                this.blur();
+            });
+            
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 768 && navbarMenu.classList.contains('active')) {
                     if (isAnimating) return;
@@ -97,14 +130,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Verificar se a logo carregou - CORREÇÃO PARA PNG
+    // Verificar se a logo carregou
     const logoImg = document.getElementById('logo-img');
     const logoFallback = document.getElementById('logo-fallback');
     
     if (logoImg) {
         // Primeiro tenta carregar a logo
         logoImg.onload = function() {
-            console.log('✅ Logo carregada com sucesso');
+            console.log('✅ Logo central carregada com sucesso');
             if (logoFallback) {
                 logoFallback.style.display = 'none';
                 logoImg.style.display = 'block';
@@ -112,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         logoImg.onerror = function() {
-            console.log('⚠️ Logo não encontrada, usando fallback');
+            console.log('⚠️ Logo central não encontrada, usando fallback');
             if (logoFallback) {
                 logoFallback.style.display = 'flex';
                 logoImg.style.display = 'none';
@@ -207,6 +240,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Suavizar scroll para âncoras
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // REMOVER OUTLINE DOS LINKS DE ÂNCORA
+        anchor.addEventListener('mousedown', function() {
+            this.blur();
+        });
+        
+        anchor.addEventListener('touchstart', function() {
+            this.blur();
+        });
+        
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
@@ -225,6 +267,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Efeito de hover nas imagens com zoom
     const imageContainers = document.querySelectorAll('.imagem-container');
     imageContainers.forEach(container => {
+        // REMOVER OUTLINE DAS IMAGENS
+        container.addEventListener('mousedown', function() {
+            this.blur();
+        });
+        
+        container.addEventListener('touchstart', function() {
+            this.blur();
+        });
+        
         container.addEventListener('mouseenter', function() {
             this.style.transform = 'scale(1.02)';
         });
@@ -245,6 +296,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // REMOVER OUTLINE DOS BOTÕES DE WHATSAPP E INSTAGRAM
+    document.querySelectorAll('.btn-whatsapp, .btn-secondary, .whatsapp-float, .rede-social').forEach(button => {
+        button.addEventListener('mousedown', function() {
+            this.blur();
+        });
+        
+        button.addEventListener('touchstart', function() {
+            this.blur();
+        });
+    });
+    
     // Instruções para o usuário
     console.log('📁 ESTRUTURA DE ARQUIVOS:');
     console.log('├── index.html');
@@ -255,14 +317,12 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('├── antes1.jpg, depois1.jpg, etc.');
     console.log('');
     console.log('🎨 CORREÇÕES APLICADAS:');
-    console.log('- Logo maior na navbar (55px)');
-    console.log('- Logo agora preenche a moldura (object-fit: cover)');
-    console.log('- Sistema corrigido para carregamento da logo central');
-    console.log('- Imagens com cores neutras para melhor identificação');
-    console.log('- Cada imagem amplia corretamente ao clicar');
+    console.log('- Logos maiores (85-90% dos containers)');
+    console.log('- Removido outline azul de todos os elementos clicáveis');
+    console.log('- Sistema otimizado para mobile e desktop');
 });
 
-// Funções para o Lightbox - CORRIGIDO PARA IMAGENS INDIVIDUAIS
+// Funções para o Lightbox
 function abrirLightbox(src, caption, element) {
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
@@ -336,6 +396,9 @@ function fecharLightbox() {
     const lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('active');
     document.body.style.overflow = 'auto';
+    
+    // Remover foco do botão de fechar
+    document.querySelector('.lightbox-close').blur();
 }
 
 // Fechar lightbox com ESC
@@ -386,6 +449,11 @@ style.textContent = `
     
     .imagem-container:hover::after {
         opacity: 1;
+    }
+    
+    /* Logos maiores e mais visíveis */
+    .logo-img, .navbar-logo-img {
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
     }
 `;
 document.head.appendChild(style);
