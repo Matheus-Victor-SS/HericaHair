@@ -338,8 +338,8 @@ button:active {
 
 /* LOGO MAIOR - 85% DO CONTAINER */
 .logo-img {
-    width: 100%;
-    height: 100%;
+    width: 150%;
+    height: 150%;
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
@@ -1196,6 +1196,7 @@ footer {
         padding: 20px;
     }
 }
+
 
 
 
