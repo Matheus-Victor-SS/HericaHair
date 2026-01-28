@@ -19,6 +19,18 @@
     padding: 0;
 }
 
+/* REMOVER OUTLINE AZUL EM TODOS OS ELEMENTOS */
+*:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* PARA ACESSIBILIDADE, MANTENHA APENAS PARA TAB NAVIGATION */
+*:focus-visible {
+    outline: 2px solid var(--gold2) !important;
+    outline-offset: 2px;
+}
+
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 70px;
@@ -34,6 +46,7 @@ body {
     min-height: 100vh;
     padding-top: 70px;
     position: relative;
+    -webkit-tap-highlight-color: transparent; /* Remove highlight azul no mobile */
 }
 
 /* ELEMENTOS DECORATIVOS DE FUNDO */
@@ -108,10 +121,10 @@ body {
     align-items: center;
 }
 
-/* LOGO NA NAVBAR - MAIOR */
+/* LOGO NA NAVBAR - MAIOR E PREENCHENDO MAIS ESPAÇO */
 .navbar-logo {
-    width: 55px;
-    height: 55px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid var(--gold1);
@@ -127,11 +140,17 @@ body {
     transform: rotate(10deg);
 }
 
+/* LOGO MAIOR - 90% DO CONTAINER */
 .navbar-logo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Alterado de contain para cover */
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
     display: block;
+    transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover .navbar-logo-img {
+    transform: scale(1.05);
 }
 
 .navbar-logo-fallback {
@@ -143,7 +162,7 @@ body {
     justify-content: center;
     color: #000;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 .navbar-menu {
@@ -162,6 +181,7 @@ body {
     transition: all 0.3s ease;
     padding: 5px 0;
     position: relative;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .navbar-menu a:hover {
@@ -191,6 +211,7 @@ body {
     font-weight: 600 !important;
     margin-left: 10px;
     transition: all 0.3s ease !important;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .nav-whatsapp:hover {
@@ -212,10 +233,21 @@ body {
     padding: 5px;
     transition: transform 0.3s ease;
     z-index: 1001;
+    -webkit-tap-highlight-color: transparent;
+    outline: none !important;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .navbar-toggle:hover {
     transform: scale(1.1);
+}
+
+/* REMOVER OUTLINE ESPECÍFICO PARA BOTÕES */
+button:focus,
+button:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 /* TÍTULO CALIGRÁFICO */
@@ -282,10 +314,10 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* LOGO CENTRAL - CORRIGIDA */
+/* LOGO CENTRAL - MAIOR E PREENCHENDO MELHOR */
 .logo-container {
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
     margin: 0 auto 25px;
     border-radius: 50%;
     background: #1a1a1a;
@@ -304,11 +336,17 @@ body {
     50% { box-shadow: 0 0 40px rgba(191, 163, 90, 0.6); }
 }
 
+/* LOGO MAIOR - 85% DO CONTAINER */
 .logo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Alterado de contain para cover */
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
     display: block;
+    transition: transform 0.3s ease;
+}
+
+.logo-container:hover .logo-img {
+    transform: scale(1.05);
 }
 
 .logo-fallback {
@@ -320,7 +358,7 @@ body {
     justify-content: center;
     color: #000;
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 2.5rem;
     position: absolute;
     top: 0;
     left: 0;
@@ -370,6 +408,7 @@ body {
     max-width: 300px;
     position: relative;
     overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .btn-whatsapp::before {
@@ -392,6 +431,28 @@ body {
     box-shadow: 0 12px 25px rgba(191, 163, 90, 0.6);
 }
 
+/* REMOVER OUTLINE DE TODOS OS LINKS E BOTÕES */
+a:focus,
+.btn-whatsapp:focus,
+.btn-secondary:focus,
+.navbar-toggle:focus,
+.lightbox-close:focus,
+.rede-social:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* PARA ACESSIBILIDADE COM TAB, MANTENHA VISUAL DIFERENTE */
+a:focus-visible,
+.btn-whatsapp:focus-visible,
+.btn-secondary:focus-visible,
+.navbar-toggle:focus-visible,
+.lightbox-close:focus-visible,
+.rede-social:focus-visible {
+    outline: 2px solid var(--gold2) !important;
+    outline-offset: 3px;
+}
+
 /* BOTÕES SECUNDÁRIOS */
 .btn-secondary {
     display: inline-flex;
@@ -410,6 +471,7 @@ body {
     max-width: 250px;
     width: auto;
     margin: 0 auto;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .btn-secondary:hover {
@@ -464,6 +526,7 @@ section {
     margin: 0 auto;
     position: relative;
     z-index: 2;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .antes-depois-item:hover {
@@ -486,7 +549,14 @@ section {
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease;
-    background: #2a2a2a; /* Cor de fundo neutra */
+    background: #2a2a2a;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.imagem-container:active,
+.imagem-container:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .imagem-container:hover {
@@ -747,6 +817,7 @@ footer {
     text-decoration: none;
     border: 1px solid rgba(191, 163, 90, 0.3);
     transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .rede-social:hover {
@@ -771,6 +842,7 @@ footer {
     transition: all 0.3s ease;
     text-decoration: none !important;
     animation: floatWhatsapp 3s ease-in-out infinite;
+    -webkit-tap-highlight-color: transparent;
 }
 
 @keyframes floatWhatsapp {
@@ -858,6 +930,7 @@ footer {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .lightbox-close:hover {
@@ -938,8 +1011,13 @@ footer {
     }
     
     .navbar-logo {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
+    }
+    
+    .navbar-logo-img {
+        width: 85%;
+        height: 85%;
     }
     
     /* Ajustes para evitar sobreposição */
@@ -957,8 +1035,13 @@ footer {
     }
     
     .logo-container {
-        width: 130px;
-        height: 130px;
+        width: 150px;
+        height: 150px;
+    }
+    
+    .logo-img {
+        width: 80%;
+        height: 80%;
     }
     
     .section-title {
@@ -1020,8 +1103,13 @@ footer {
 
 @media (max-width: 480px) {
     .navbar-logo {
-        width: 45px;
-        height: 45px;
+        width: 55px;
+        height: 55px;
+    }
+    
+    .navbar-logo-img {
+        width: 85%;
+        height: 85%;
     }
     
     .caligrafia {
@@ -1043,8 +1131,13 @@ footer {
     }
     
     .logo-container {
-        width: 110px;
-        height: 110px;
+        width: 130px;
+        height: 130px;
+    }
+    
+    .logo-img {
+        width: 80%;
+        height: 80%;
     }
     
     .antes-depois-imagens {
