@@ -1,859 +1,242 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HéricaHair | Transformação Capilar</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💇‍♀️</text></svg>">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-:root {
-  --bg: #0e0e0e;
-  --card: #1a1a1a;
-  --soft: #242424;
-  --gold1: #bfa35a;
-  --gold2: #e8d9a0;
-  --gold3: #d4b95a;
-  --gold-glow: rgba(191, 163, 90, 0.3);
-  --text: #eaeaea;
-  --text-light: #b0b0b0;
-  --border: #333;
-  --shadow: rgba(0, 0, 0, 0.5);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  overflow-x: hidden;
-  width: 100%;
-  min-height: 100vh;
-}
-
-/* TEXTO DOURADO */
-.gold {
-  background: linear-gradient(90deg, var(--gold1), var(--gold2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* HERO SECTION */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  overflow: hidden;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(135deg, rgba(11, 11, 11, 0.9) 0%, rgba(26, 26, 26, 0.8) 100%),
-    url("https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80");
-  background-size: cover;
-  background-position: center;
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 3;
-  max-width: 500px;
-  width: 100%;
-  padding: 40px 25px;
-  background: rgba(26, 26, 26, 0.85);
-  backdrop-filter: blur(10px);
-  border-radius: 24px;
-  border: 1px solid rgba(191, 163, 90, 0.2);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-  animation: fadeInUp 1s ease-out;
-  margin: 0 auto;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* LOGO - AQUI VOCÊ COLOCARÁ SUA LOGO JPEG */
-.logo-container {
-  width: 150px;
-  height: 150px;
-  margin: 0 auto 25px;
-  border-radius: 50%;
-  background: #1a1a1a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border: 3px solid var(--gold1);
-  box-shadow: 0 0 30px rgba(191, 163, 90, 0.4);
-}
-
-/* Substitua o background abaixo pela sua logo JPEG */
-.logo-placeholder {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, var(--gold1), var(--gold2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #000;
-  font-weight: 700;
-  font-size: 1.8rem;
-}
-
-/* TITULOS */
-.hero h1 {
-  font-size: 2.5rem;
-  margin: 0 0 15px;
-  letter-spacing: 1px;
-  font-weight: 700;
-}
-
-.hero-tagline {
-  font-size: 1.2rem;
-  color: var(--gold2);
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-.hero-subtitle {
-  font-size: 1rem;
-  opacity: 0.9;
-  margin-bottom: 30px;
-  color: var(--text-light);
-}
-
-/* BOTÃO PRINCIPAL (WHATSAPP) - MAIOR E SEM SUBLINHADO */
-.btn-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 20px;
-  padding: 18px 35px;
-  border-radius: 50px;
-  background: linear-gradient(90deg, var(--gold1), var(--gold3));
-  color: #000;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(191, 163, 90, 0.4);
-  width: 100%;
-  max-width: 300px;
-}
-
-.btn-whatsapp:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgba(191, 163, 90, 0.6);
-}
-
-/* BOTÕES SECUNDÁRIOS - MENORES */
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 25px;
-  border-radius: 50px;
-  background: rgba(191, 163, 90, 0.1);
-  color: var(--gold2);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  border: 1px solid rgba(191, 163, 90, 0.3);
-  transition: all 0.3s ease;
-  max-width: 250px;
-  width: auto;
-  margin: 0 auto;
-}
-
-.btn-secondary:hover {
-  background: rgba(191, 163, 90, 0.2);
-  transform: translateY(-2px);
-}
-
-/* SEÇÕES */
-section {
-  padding: 60px 20px;
-  width: 100%;
-}
-
-.section-title {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 2rem;
-  font-weight: 600;
-  width: 100%;
-}
-
-/* CONTAINER PRINCIPAL */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* ANTES E DEPOIS - 2 IMAGENS POR LINHA COM ESPAÇO */
-.antes-depois-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
-  width: 100%;
-  margin-bottom: 40px;
-}
-
-.antes-depois-item {
-  background: var(--card);
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  transition: transform 0.3s ease;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.antes-depois-item:hover {
-  transform: translateY(-5px);
-}
-
-.antes-depois-imagens {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  height: 180px;
-  padding: 10px;
-}
-
-.antes-depois-imagens img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.antes-depois-info {
-  padding: 15px;
-  text-align: center;
-}
-
-.antes-depois-info h3 {
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-  color: var(--gold2);
-}
-
-.antes-depois-info p {
-  font-size: 0.9rem;
-  color: var(--text-light);
-  line-height: 1.5;
-}
-
-/* SOBRE COM IMAGEM */
-.sobre-container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  width: 100%;
-}
-
-.sobre-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .sobre-content {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-}
-
-.sobre-imagem {
-  flex: 0 0 200px;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid var(--gold1);
-  box-shadow: 0 0 25px rgba(191, 163, 90, 0.4);
-  margin: 0 auto;
-}
-
-.sobre-imagem img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.sobre-texto {
-  flex: 1;
-  background: linear-gradient(160deg, var(--card), var(--soft));
-  border-radius: 20px;
-  padding: 25px;
-  border: 1px solid var(--border);
-  box-shadow: 0 10px 30px var(--shadow);
-}
-
-.sobre-texto p {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--text-light);
-  margin-bottom: 20px;
-}
-
-.sobre-texto strong {
-  color: var(--gold2);
-}
-
-.especialidades {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 25px;
-  justify-content: center;
-}
-
-.especialidade-tag {
-  background: rgba(191, 163, 90, 0.1);
-  border: 1px solid rgba(191, 163, 90, 0.3);
-  padding: 10px 18px;
-  border-radius: 50px;
-  font-size: 0.9rem;
-  color: var(--gold2);
-}
-
-/* LOCALIZAÇÃO */
-.mapa-container {
-  border-radius: 20px;
-  overflow: hidden;
-  margin: 30px 0;
-  border: 1px solid var(--border);
-  width: 100%;
-}
-
-.mapa-container iframe {
-  width: 100%;
-  height: 250px;
-  border: none;
-  display: block;
-}
-
-.info-horario {
-  text-align: center;
-  margin: 25px 0;
-  padding: 20px;
-  background: rgba(191, 163, 90, 0.05);
-  border-radius: 16px;
-  border-left: 4px solid var(--gold1);
-  width: 100%;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.info-horario p {
-  font-size: 1rem;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-
-.info-horario strong {
-  color: var(--gold2);
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  border-top: 1px solid var(--border);
-  margin-top: 40px;
-  background: linear-gradient(to top, var(--card), transparent);
-  width: 100%;
-}
-
-/* REDES SOCIAIS - BOTÕES MENORES */
-.redes-sociais {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 25px 0;
-  width: 100%;
-}
-
-.rede-social {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: rgba(191, 163, 90, 0.1);
-  color: var(--gold2);
-  font-size: 1.3rem;
-  text-decoration: none;
-  border: 1px solid rgba(191, 163, 90, 0.3);
-  transition: all 0.3s ease;
-}
-
-.rede-social:hover {
-  background: rgba(191, 163, 90, 0.2);
-  transform: translateY(-3px);
-}
-
-/* WHATSAPP FLOAT - SEM SUBLINHADO */
-.whatsapp-float {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold1), var(--gold2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 5px 20px rgba(191, 163, 90, 0.5);
-  z-index: 1000;
-  transition: all 0.3s ease;
-  text-decoration: none !important;
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 25px rgba(191, 163, 90, 0.7);
-}
-
-.whatsapp-float i {
-  font-size: 32px;
-  color: #000;
-}
-
-/* MENU DE NAVEGAÇÃO - BOTÕES MENORES */
-.nav-mobile {
-  position: fixed;
-  bottom: 100px;
-  right: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  z-index: 999;
-}
-
-.nav-item {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: rgba(191, 163, 90, 0.1);
-  color: var(--gold2);
-  font-size: 1.2rem;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(191, 163, 90, 0.3);
-  transition: all 0.3s ease;
-}
-
-.nav-item:hover {
-  background: rgba(191, 163, 90, 0.2);
-  transform: translateY(-3px);
-}
-
-/* RESPONSIVIDADE */
-@media (min-width: 768px) {
-  .hero h1 {
-    font-size: 3rem;
-  }
-  
-  .hero-tagline {
-    font-size: 1.4rem;
-  }
-  
-  .antes-depois-container {
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-  }
-  
-  .antes-depois-imagens {
-    height: 200px;
-  }
-  
-  .section-title {
-    font-size: 2.2rem;
-  }
-  
-  .container {
-    padding: 0 30px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .antes-depois-container {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
-  
-  .antes-depois-item {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-content {
-    padding: 30px 20px;
-    margin: 0 15px;
-  }
-  
-  .hero h1 {
-    font-size: 2rem;
-  }
-  
-  .hero-tagline {
-    font-size: 1.1rem;
-  }
-  
-  .btn-whatsapp {
-    padding: 16px 30px;
-    font-size: 1rem;
-    max-width: 280px;
-  }
-  
-  .antes-depois-imagens {
-    height: 150px;
-    gap: 8px;
-    padding: 8px;
-  }
-  
-  .sobre-texto {
-    padding: 20px;
-  }
-  
-  .whatsapp-float, .nav-item {
-    width: 55px;
-    height: 55px;
-  }
-  
-  .whatsapp-float i, .nav-item i {
-    font-size: 26px;
-  }
-  
-  .nav-mobile {
-    bottom: 90px;
-    right: 20px;
-  }
-  
-  .container {
-    padding: 0 15px;
-  }
-}
-
-/* CORREÇÃO PARA IMAGENS NO GITHUB */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* ESTILOS ESPECÍFICOS PARA IMAGENS LOCAIS */
-.local-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* CENTRALIZAÇÃO DE CONTAINERS */
-.center-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HéricaHair | Transformação Capilar</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💇‍♀️</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<!-- HERO SECTION -->
-<div class="hero">
-  <div class="hero-bg"></div>
-  
-  <div class="hero-content">
-    <!-- AQUI VOCÊ COLOCA SUA LOGO JPEG -->
-    <div class="logo-container">
-      <div class="logo-placeholder">
-<img src="logo.jpeg" alt="HéricaHair" class="local-image">
-      </div>
-    </div>
-    
-    <h1 class="gold">HéricaHair</h1>
-    <p class="hero-tagline">Transformação Capilar Profissional</p>
-    <p class="hero-subtitle">Resultados que realçam sua beleza natural</p>
-    
-    <div class="center-container">
-      <a class="btn-whatsapp" href="https://wa.me/5511971289836" target="_blank">
-        <i class="fab fa-whatsapp"></i> AGENDAR AGORA
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- ANTES E DEPOIS -->
-<section id="trabalhos">
-  <div class="container">
-    <h2 class="section-title gold">Transformações Reais</h2>
-    
-    <div class="antes-depois-container">
-      <!-- EXEMPLO 1 -->
-      <div class="antes-depois-item">
-        <div class="antes-depois-imagens">
-          <img src="antes1.jpg" alt="Antes" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-          <img src="depois1.jpg" alt="Depois" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-        </div>
-        <div class="antes-depois-info">
-          <h3>Reconstrução Capilar</h3>
-          <p>Tratamento intensivo para cabelos danificados, com hidratação profunda e recuperação dos fios.</p>
-        </div>
-      </div>
-      
-      <!-- EXEMPLO 2 -->
-      <div class="antes-depois-item">
-        <div class="antes-depois-imagens">
-          <img src="antes2.jpg" alt="Antes" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1526417501783-5d375490ad1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-          <img src="depois2.jpg" alt="Depois" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-        </div>
-        <div class="antes-depois-info">
-          <h3>Colorimetria Dourada</h3>
-          <p>Aplicação de mechas douradas para iluminar o rosto e dar vida aos cabelos castanhos.</p>
-        </div>
-      </div>
-      
-      <!-- EXEMPLO 3 -->
-      <div class="antes-depois-item">
-        <div class="antes-depois-imagens">
-          <img src="antes3.jpg" alt="Antes" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1519690889869-e705e59f72e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-          <img src="depois3.jpg" alt="Depois" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-        </div>
-        <div class="antes-depois-info">
-          <h3>Progressiva Brasileira</h3>
-          <p>Alisamento progressivo com fórmula exclusiva que mantém os fios saudáveis e brilhantes.</p>
-        </div>
-      </div>
-      
-      <!-- EXEMPLO 4 -->
-      <div class="antes-depois-item">
-        <div class="antes-depois-imagens">
-          <img src="antes4.jpg" alt="Antes" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-          <img src="depois4.jpg" alt="Depois" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-        </div>
-        <div class="antes-depois-info">
-          <h3>Corte e Finalização</h3>
-          <p>Corte personalizado conforme formato do rosto e finalização com produtos profissionais.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="center-container" style="margin-top: 30px;">
-      <a class="btn-secondary" href="https://www.instagram.com/_herica.hair_/" target="_blank">
-        <i class="fab fa-instagram"></i> Ver mais no Instagram
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- SOBRE COM IMAGEM -->
-<section id="sobre">
-  <div class="container">
-    <h2 class="section-title gold">Sobre Mim</h2>
-    
-    <div class="sobre-container">
-      <div class="sobre-content">
-        <!-- AQUI VOCÊ COLOCA SUA FOTO PNG -->
-        <div class="sobre-imagem">
-          <!-- SUBSTITUA ESTE DIV PELA SUA FOTO -->
-          <div style="width:100%;height:100%;background:linear-gradient(45deg, var(--gold1), var(--gold2));display:flex;align-items:center;justify-content:center;color:#000;font-weight:bold;">
-            Minha Foto
-          </div>
-          <!-- <img src="sua-foto.png" alt="Hérica Vanessa" class="local-image"> -->
-        </div>
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <div class="hero-bg"></div>
         
-        <div class="sobre-texto">
-          <p>
-            Sou <strong>Hérica Vanessa</strong>, especialista em transformação capilar com mais de <strong>9 anos</strong> de experiência. 
-            Minha paixão pela beleza capilar começou cedo e hoje transformo cabelos em verdadeiras obras de arte.
-          </p>
-          
-          <p>
-            Minha filosofia é simples: <strong>saúde capilar em primeiro lugar</strong>. 
-            Cada procedimento é pensado para realçar sua beleza natural, respeitando a integridade dos fios.
-          </p>
-          
-          <p>
-            No meu espaço, você encontra não apenas técnica, mas também cuidado, atenção e um ambiente acolhedor 
-            onde sua autoestima é a prioridade.
-          </p>
-          
-          <div class="especialidades">
-            <div class="especialidade-tag">Colorimetria</div>
-            <div class="especialidade-tag">Progressiva</div>
-            <div class="especialidade-tag">Botox Capilar</div>
-            <div class="especialidade-tag">Reconstrução</div>
-            <div class="especialidade-tag">Cortes</div>
-            <div class="especialidade-tag">Penteados</div>
-          </div>
+        <div class="hero-content">
+            <!-- LOGO -->
+            <div class="logo-container">
+                <img src="logoH.jpeg" alt="HéricaHair" class="logo-img" id="logo-img">
+                <div class="logo-fallback" id="logo-fallback">HH</div>
+            </div>
+            
+            <h1 class="gold">HéricaHair</h1>
+            <p class="hero-tagline">Transformação Capilar Profissional</p>
+            <p class="hero-subtitle">Resultados que realçam sua beleza natural</p>
+            
+            <div class="center-container">
+                <a class="btn-whatsapp" href="https://wa.me/5511971289836" target="_blank">
+                    <i class="fab fa-whatsapp"></i> AGENDAR AGORA
+                </a>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</section>
 
-<!-- LOCALIZAÇÃO E HORÁRIOS -->
-<section id="localizacao">
-  <div class="container">
-    <h2 class="section-title gold">Venha me Visitar</h2>
-    
-    <div class="mapa-container">
-      <iframe src="https://www.google.com/maps?q=Rua%20Jata%C3%AD%20353%20Jundia%C3%AD%20SP&output=embed&zoom=16" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-    
-    <div class="info-horario">
-      <p><i class="fas fa-map-marker-alt" style="color: var(--gold1); margin-right: 10px;"></i> Rua Jataí, 353 – Vila Josefina – Jundiaí/SP</p>
-      <p><i class="fas fa-clock" style="color: var(--gold1); margin-right: 10px;"></i> <strong>Horário de atendimento:</strong></p>
-      <p>Terça a Domingo, das 9h às 20h</p>
-    </div>
-    
-    <div class="center-container" style="margin-top: 30px;">
-      <a class="btn-secondary" href="https://wa.me/5511971289836" target="_blank">
-        <i class="fas fa-directions"></i> Solicitar endereço
-      </a>
-    </div>
-  </div>
-</section>
+    <!-- ANTES E DEPOIS -->
+    <section id="trabalhos">
+        <div class="container">
+            <h2 class="section-title gold">Transformações Reais</h2>
+            
+            <div class="antes-depois-container">
+                <!-- EXEMPLO 1 -->
+                <div class="antes-depois-item">
+                    <div class="antes-depois-imagens">
+                        <div class="imagem-container">
+                            <span class="imagem-label">ANTES</span>
+                            <img src="antes1.jpg" alt="Antes - Reconstrução Capilar" class="local-image" 
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                        </div>
+                        <div class="imagem-container">
+                            <span class="imagem-label">DEPOIS</span>
+                            <img src="depois1.jpg" alt="Depois - Reconstrução Capilar" class="local-image"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                        </div>
+                    </div>
+                    <div class="antes-depois-info">
+                        <h3>Reconstrução Capilar</h3>
+                        <p>Tratamento intensivo para cabelos danificados, com hidratação profunda e recuperação dos fios.</p>
+                    </div>
+                </div>
+                
+                <!-- EXEMPLO 2 -->
+                <div class="antes-depois-item">
+                    <div class="antes-depois-imagens">
+                        <div class="imagem-container">
+                            <span class="imagem-label">ANTES</span>
+                            <img src="antes2.jpg" alt="Antes - Colorimetria" class="local-image"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1526417501783-5d375490ad1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                        </div>
+                        <div class="imagem-container">
+                            <span class="imagem-label">DEPOIS</span>
+                            <img src="depois2.jpg" alt="Depois - Colorimetria" class="local-image"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                        </div>
+                    </div>
+                    <div class="antes-depois-info">
+                        <h3>Colorimetria Dourada</h3>
+                        <p>Aplicação de mechas douradas para iluminar o rosto e dar vida aos cabelos castanhos.</p>
+                    </div>
+                </div>
+                
+                <!-- EXEMPLO 3 -->
+                <div class="antes-depois-item">
+                    <div class="antes-depois-imagens">
+                        <div class="imagem-container">
+                            <span class="imagem-label">ANTES</span>
+                            <img src="antes3.jpg" alt="Antes - Progressiva" class="local-image"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519690889869-e705e59f72e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                        </div>
+                        <div class="imagem-container">
+                            <span class="imagem-label">DEPOIS</span>
+                            <img src="depois3.jpg" alt="Depois - Progressiva" class="local-image"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                        </div>
+                    </div>
+                    <div class="antes-depois-info">
+                        <h3>Progressiva Brasileira</h3>
+                        <p>Alisamento progressivo com fórmula exclusiva que mantém os fios saudáveis e brilhantes.</p>
+                    </div>
+                </div>
+                
+                <!-- EXEMPLO 4 -->
+                <div class="antes-depois-item">
+                    <div class="antes-depois-imagens">
+                        <div class="imagem-container">
+                            <span class="imagem-label">ANTES</span>
+                            <img src="antes4.jpg" alt="Antes - Corte" class="local-image"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                        </div>
+                        <div class="imagem-container">
+                            <span class="imagem-label">DEPOIS</span>
+                            <img src="depois4.jpg" alt="Depois - Corte" class="local-image"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                        </div>
+                    </div>
+                    <div class="antes-depois-info">
+                        <h3>Corte e Finalização</h3>
+                        <p>Corte personalizado conforme formato do rosto e finalização com produtos profissionais.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="center-container" style="margin-top: 30px;">
+                <a class="btn-secondary" href="https://www.instagram.com/_herica.hair_/" target="_blank">
+                    <i class="fab fa-instagram"></i> Ver mais no Instagram
+                </a>
+            </div>
+        </div>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="redes-sociais">
-      <a class="rede-social" href="https://www.instagram.com/_herica.hair_/" target="_blank" title="Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a class="rede-social" href="https://wa.me/5511971289836" target="_blank" title="WhatsApp">
+    <!-- SOBRE COM IMAGEM -->
+    <section id="sobre">
+        <div class="container">
+            <h2 class="section-title gold">Sobre Mim</h2>
+            
+            <div class="sobre-container">
+                <div class="sobre-content">
+                    <!-- SUA FOTO -->
+                    <div class="sobre-imagem">
+                        <img src="minha-foto.png" alt="Hérica Vanessa" class="local-image" id="minha-foto"
+                             onerror="this.onerror=null; this.style.display='none'; document.getElementById('foto-fallback').style.display='flex';">
+                        <div class="foto-fallback" id="foto-fallback">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="sobre-texto">
+                        <p>
+                            Sou <strong>Hérica Vanessa</strong>, especialista em transformação capilar com mais de <strong>9 anos</strong> de experiência. 
+                            Minha paixão pela beleza capilar começou cedo e hoje transformo cabelos em verdadeiras obras de arte.
+                        </p>
+                        
+                        <p>
+                            Minha filosofia é simples: <strong>saúde capilar em primeiro lugar</strong>. 
+                            Cada procedimento é pensado para realçar sua beleza natural, respeitando a integridade dos fios.
+                        </p>
+                        
+                        <p>
+                            No meu espaço, você encontra não apenas técnica, mas também cuidado, atenção e um ambiente acolhedor 
+                            onde sua autoestima é a prioridade.
+                        </p>
+                        
+                        <div class="especialidades">
+                            <div class="especialidade-tag">Colorimetria</div>
+                            <div class="especialidade-tag">Progressiva</div>
+                            <div class="especialidade-tag">Botox Capilar</div>
+                            <div class="especialidade-tag">Reconstrução</div>
+                            <div class="especialidade-tag">Cortes</div>
+                            <div class="especialidade-tag">Penteados</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCALIZAÇÃO E HORÁRIOS -->
+    <section id="localizacao">
+        <div class="container">
+            <h2 class="section-title gold">Venha me Visitar</h2>
+            
+            <div class="mapa-container">
+                <iframe src="https://www.google.com/maps?q=Rua%20Jata%C3%AD%20353%20Jundia%C3%AD%20SP&output=embed&zoom=16" 
+                        allowfullscreen="" loading="lazy" title="Localização do Salão"></iframe>
+            </div>
+            
+            <div class="info-horario">
+                <p><i class="fas fa-map-marker-alt" style="color: var(--gold1); margin-right: 10px;"></i> Rua Jataí, 353 – Vila Josefina – Jundiaí/SP</p>
+                <p><i class="fas fa-clock" style="color: var(--gold1); margin-right: 10px;"></i> <strong>Horário de atendimento:</strong></p>
+                <p>Terça a Domingo, das 9h às 20h</p>
+            </div>
+            
+            <div class="center-container" style="margin-top: 30px;">
+                <a class="btn-secondary" href="https://wa.me/5511971289836" target="_blank">
+                    <i class="fas fa-directions"></i> Solicitar endereço
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="redes-sociais">
+                <a class="rede-social" href="https://www.instagram.com/_herica.hair_/" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a class="rede-social" href="https://wa.me/5511971289836" target="_blank" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            
+            <p style="font-size: 1.1rem; margin: 20px 0; color: var(--gold2);">
+                <strong>Hérica Vanessa • Cabeleireira Especialista</strong>
+            </p>
+            
+            <p>© 2026 • HéricaHair • Transformação Capilar</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Telefone: (11) 97128-9836</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <a class="whatsapp-float" href="https://wa.me/5511971289836" target="_blank" title="Agende pelo WhatsApp">
         <i class="fab fa-whatsapp"></i>
-      </a>
+    </a>
+
+    <!-- MENU DE NAVEGAÇÃO -->
+    <div class="nav-mobile">
+        <a class="nav-item" href="#trabalhos" title="Transformações">
+            <i class="fas fa-images"></i>
+        </a>
+        <a class="nav-item" href="#sobre" title="Sobre">
+            <i class="fas fa-user"></i>
+        </a>
+        <a class="nav-item" href="#localizacao" title="Localização">
+            <i class="fas fa-map-marker-alt"></i>
+        </a>
     </div>
-    
-    <p style="font-size: 1.1rem; margin: 20px 0; color: var(--gold2);">
-      <strong>Hérica Vanessa • Cabeleireira Especialista</strong>
-    </p>
-    
-    <p>© 2026 • HéricaHair • Transformação Capilar</p>
-    <p style="margin-top: 10px; font-size: 0.9rem;">Telefone: (11) 97128-9836</p>
-  </div>
-</footer>
 
-<!-- WHATSAPP FLOAT -->
-<a class="whatsapp-float" href="https://wa.me/5511971289836" target="_blank" title="Agende pelo WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
-<!-- MENU DE NAVEGAÇÃO -->
-<div class="nav-mobile">
-  <a class="nav-item" href="#trabalhos" title="Transformações">
-    <i class="fas fa-images"></i>
-  </a>
-  <a class="nav-item" href="#sobre" title="Sobre">
-    <i class="fas fa-user"></i>
-  </a>
-  <a class="nav-item" href="#localizacao" title="Localização">
-    <i class="fas fa-map-marker-alt"></i>
-  </a>
-</div>
-
-<script>
-// Adiciona IDs para as seções
-document.addEventListener('DOMContentLoaded', function() {
-  // Animações suaves ao rolar
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-  
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, observerOptions);
-  
-  // Aplica animação às seções
-  const sections = document.querySelectorAll('section');
-  sections.forEach(section => {
-    section.style.opacity = 0;
-    section.style.transform = 'translateY(30px)';
-    section.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-    observer.observe(section);
-  });
-  
-  // Anima os cards quando aparecem
-  const cards = document.querySelectorAll('.antes-depois-item, .sobre-texto');
-  cards.forEach(card => {
-    card.style.opacity = 0;
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = 'opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s';
-    observer.observe(card);
-  });
-  
-  // Instruções para adicionar suas imagens
-  console.log('📁 INSTRUÇÕES PARA IMAGENS LOCAIS NO GITHUB:');
-  console.log('1. Coloque suas imagens na mesma pasta do arquivo HTML');
-  console.log('');
-  console.log('2. Para a LOGO (JPEG):');
-  console.log('   - Nome sugerido: logo.jpg');
-  console.log('   - Substitua na linha 485: <img src="logo.jpg" alt="HéricaHair" class="local-image">');
-  console.log('');
-  console.log('3. Para sua FOTO (PNG):');
-  console.log('   - Nome sugerido: minha-foto.png');
-  console.log('   - Substitua na linha 543: <img src="minha-foto.png" alt="Hérica Vanessa" class="local-image">');
-  console.log('');
-  console.log('4. Para imagens ANTES/DEPOIS:');
-  console.log('   - Nomes sugeridos: antes1.jpg, depois1.jpg, antes2.jpg, etc.');
-  console.log('   - As imagens já estão configuradas para carregar localmente');
-  console.log('');
-  console.log('💡 DICA: As imagens do Unsplash são fallback caso suas imagens locais não carreguem');
-});
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
