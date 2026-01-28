@@ -142,9 +142,9 @@ body {
 
 /* LOGO MAIOR - 90% DO CONTAINER */
 .navbar-logo-img {
-    width: 110%;
-    height: 110%;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
 }
@@ -340,7 +340,7 @@ button:active {
 .logo-img {
     width: 85%;
     height: 85%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
 }
@@ -1196,5 +1196,6 @@ footer {
         padding: 20px;
     }
 }
+
 
 
