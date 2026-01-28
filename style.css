@@ -20,6 +20,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 70px; /* Para navbar fixa não cobrir conteúdo */
 }
 
 body {
@@ -30,6 +31,135 @@ body {
     overflow-x: hidden;
     width: 100%;
     min-height: 100vh;
+    padding-top: 70px; /* Espaço para navbar fixa */
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(191, 163, 90, 0.2);
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--gold1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.navbar-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+}
+
+.navbar-logo-fallback {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--gold1), var(--gold2));
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    align-items: center;
+}
+
+.navbar-menu a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+    position: relative;
+}
+
+.navbar-menu a:hover {
+    color: var(--gold2);
+}
+
+.navbar-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold2);
+    transition: width 0.3s ease;
+}
+
+.navbar-menu a:hover::after {
+    width: 100%;
+}
+
+.nav-whatsapp {
+    background: linear-gradient(90deg, var(--gold1), var(--gold3));
+    color: #000 !important;
+    padding: 8px 20px !important;
+    border-radius: 25px;
+    font-weight: 600 !important;
+    margin-left: 10px;
+}
+
+.nav-whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(191, 163, 90, 0.4);
+}
+
+.nav-whatsapp::after {
+    display: none;
+}
+
+.navbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--gold2);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* TÍTULO CALIGRÁFICO */
+.caligrafia {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--gold2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 10px 0;
+    letter-spacing: 1px;
 }
 
 /* TEXTO DOURADO */
@@ -43,7 +173,7 @@ body {
 /* HERO SECTION */
 .hero {
     position: relative;
-    min-height: 100vh;
+    min-height: calc(100vh - 70px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,7 +213,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* LOGO */
+/* LOGO CENTRAL */
 .logo-container {
     width: 150px;
     height: 150px;
@@ -122,7 +252,7 @@ body {
     left: 0;
 }
 
-/* TITULOS */
+/* TITULOS HERO */
 .hero h1 {
     font-size: 2.5rem;
     margin: 0 0 15px;
@@ -198,8 +328,9 @@ body {
 
 /* SEÇÕES */
 section {
-    padding: 60px 20px;
+    padding: 80px 20px;
     width: 100%;
+    margin-top: 20px;
 }
 
 .section-title {
@@ -218,11 +349,11 @@ section {
     padding: 0 20px;
 }
 
-/* ANTES E DEPOIS - COM ESPAÇAMENTO ENTRE IMAGENS */
+/* ANTES E DEPOIS - COM ZOOM */
 .antes-depois-container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 40px;
     width: 100%;
     margin-bottom: 40px;
 }
@@ -245,9 +376,9 @@ section {
 .antes-depois-imagens {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px; /* ESPAÇAMENTO ENTRE AS IMAGENS */
-    height: 180px;
-    padding: 15px;
+    gap: 20px;
+    height: 200px;
+    padding: 20px;
 }
 
 .imagem-container {
@@ -256,19 +387,46 @@ section {
     height: 100%;
     border-radius: 10px;
     overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.imagem-container:hover {
+    transform: scale(1.02);
+}
+
+.imagem-container:hover .zoom-overlay {
+    opacity: 1;
+}
+
+.zoom-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold2);
+    font-size: 2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
 }
 
 .imagem-label {
     position: absolute;
-    top: 8px;
-    left: 8px;
+    top: 10px;
+    left: 10px;
     background: rgba(0, 0, 0, 0.7);
     color: var(--gold2);
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 4px;
     font-size: 0.8rem;
     font-weight: 600;
-    z-index: 2;
+    z-index: 3;
 }
 
 .antes-depois-imagens img {
@@ -279,27 +437,27 @@ section {
 }
 
 .antes-depois-info {
-    padding: 15px;
+    padding: 20px;
     text-align: center;
 }
 
 .antes-depois-info h3 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
     color: var(--gold2);
 }
 
 .antes-depois-info p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--text-light);
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 /* SOBRE COM IMAGEM */
 .sobre-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
     width: 100%;
 }
 
@@ -307,7 +465,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
+    gap: 30px;
     width: 100%;
 }
 
@@ -319,9 +477,9 @@ section {
 }
 
 .sobre-imagem {
-    flex: 0 0 200px;
-    width: 200px;
-    height: 200px;
+    flex: 0 0 220px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid var(--gold1);
@@ -351,13 +509,13 @@ section {
     flex: 1;
     background: linear-gradient(160deg, var(--card), var(--soft));
     border-radius: 20px;
-    padding: 25px;
+    padding: 30px;
     border: 1px solid var(--border);
     box-shadow: 0 10px 30px var(--shadow);
 }
 
 .sobre-texto p {
-    font-size: 1rem;
+    font-size: 1.05rem;
     line-height: 1.7;
     color: var(--text-light);
     margin-bottom: 20px;
@@ -370,7 +528,7 @@ section {
 .especialidades {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
     margin-top: 25px;
     justify-content: center;
 }
@@ -378,9 +536,9 @@ section {
 .especialidade-tag {
     background: rgba(191, 163, 90, 0.1);
     border: 1px solid rgba(191, 163, 90, 0.3);
-    padding: 10px 18px;
+    padding: 10px 20px;
     border-radius: 50px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--gold2);
 }
 
@@ -395,15 +553,15 @@ section {
 
 .mapa-container iframe {
     width: 100%;
-    height: 250px;
+    height: 300px;
     border: none;
     display: block;
 }
 
 .info-horario {
     text-align: center;
-    margin: 25px 0;
-    padding: 20px;
+    margin: 30px 0;
+    padding: 25px;
     background: rgba(191, 163, 90, 0.05);
     border-radius: 16px;
     border-left: 4px solid var(--gold1);
@@ -414,9 +572,9 @@ section {
 }
 
 .info-horario p {
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--text);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .info-horario strong {
@@ -426,19 +584,38 @@ section {
 /* FOOTER */
 footer {
     text-align: center;
-    padding: 40px 20px;
+    padding: 50px 20px;
     border-top: 1px solid var(--border);
-    margin-top: 40px;
+    margin-top: 60px;
     background: linear-gradient(to top, var(--card), transparent);
     width: 100%;
+}
+
+.footer-logo-container {
+    margin-bottom: 30px;
+}
+
+.footer-logo-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--gold2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+}
+
+.footer-slogan {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-style: italic;
 }
 
 /* REDES SOCIAIS */
 .redes-sociais {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin: 25px 0;
+    gap: 20px;
+    margin: 30px 0;
     width: 100%;
 }
 
@@ -446,12 +623,12 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     background: rgba(191, 163, 90, 0.1);
     color: var(--gold2);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     text-decoration: none;
     border: 1px solid rgba(191, 163, 90, 0.3);
     transition: all 0.3s ease;
@@ -465,8 +642,8 @@ footer {
 /* WHATSAPP FLOAT */
 .whatsapp-float {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
+    bottom: 30px;
+    right: 30px;
     width: 65px;
     height: 65px;
     border-radius: 50%;
@@ -475,7 +652,7 @@ footer {
     align-items: center;
     justify-content: center;
     box-shadow: 0 5px 20px rgba(191, 163, 90, 0.5);
-    z-index: 1000;
+    z-index: 999;
     transition: all 0.3s ease;
     text-decoration: none !important;
 }
@@ -490,35 +667,69 @@ footer {
     color: #000;
 }
 
-/* MENU DE NAVEGAÇÃO */
-.nav-mobile {
+/* LIGHTBOX PARA ZOOM */
+.lightbox {
+    display: none;
     position: fixed;
-    bottom: 100px;
-    right: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1100;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-.nav-item {
-    width: 50px;
-    height: 50px;
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: var(--gold1);
+    color: #000;
+    border: none;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: rgba(191, 163, 90, 0.1);
-    color: var(--gold2);
-    font-size: 1.2rem;
-    text-decoration: none;
+    font-size: 1.5rem;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(191, 163, 90, 0.3);
     transition: all 0.3s ease;
 }
 
-.nav-item:hover {
-    background: rgba(191, 163, 90, 0.2);
-    transform: translateY(-3px);
+.lightbox-close:hover {
+    background: var(--gold2);
+    transform: scale(1.1);
+}
+
+.lightbox-caption {
+    color: white;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
 }
 
 /* UTILITÁRIOS */
@@ -536,55 +747,117 @@ footer {
     object-fit: cover;
 }
 
-/* RESPONSIVIDADE */
-@media (min-width: 768px) {
-    .hero h1 {
+/* RESPONSIVIDADE PARA MOBILE */
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+    
+    .navbar {
+        padding: 8px 0;
+    }
+    
+    .navbar-container {
+        padding: 0 15px;
+    }
+    
+    .navbar-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(26, 26, 26, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        border-top: 1px solid rgba(191, 163, 90, 0.2);
+    }
+    
+    .navbar-menu.active {
+        display: flex;
+    }
+    
+    .navbar-toggle {
+        display: block;
+    }
+    
+    .nav-whatsapp {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    
+    /* Ajustes para evitar sobreposição */
+    .caligrafia {
         font-size: 3rem;
     }
     
-    .hero-tagline {
-        font-size: 1.4rem;
+    .hero {
+        min-height: calc(100vh - 60px);
     }
     
-    .antes-depois-container {
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-    }
-    
-    .antes-depois-imagens {
-        height: 200px;
-        gap: 20px;
-        padding: 20px;
+    .hero-content {
+        padding: 30px 20px;
+        margin: 0 10px;
     }
     
     .section-title {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    section {
+        padding: 60px 15px;
     }
     
     .container {
-        padding: 0 30px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .antes-depois-container {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-    }
-    
-    .antes-depois-item {
-        max-width: 100%;
+        padding: 0 15px;
     }
     
     .antes-depois-imagens {
+        height: 170px;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .antes-depois-item {
+        margin-bottom: 20px;
+    }
+    
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+    }
+    
+    .whatsapp-float i {
+        font-size: 28px;
+    }
+    
+    .sobre-content {
         gap: 25px;
+    }
+    
+    .sobre-imagem {
+        flex: 0 0 180px;
+        width: 180px;
+        height: 180px;
+    }
+    
+    .sobre-texto {
+        padding: 25px 20px;
+    }
+    
+    .footer-logo-text {
+        font-size: 2.8rem;
     }
 }
 
 @media (max-width: 480px) {
-    .hero-content {
-        padding: 30px 20px;
-        margin: 0 15px;
+    .caligrafia {
+        font-size: 2.5rem;
     }
     
     .hero h1 {
@@ -607,25 +880,53 @@ footer {
         padding: 12px;
     }
     
-    .sobre-texto {
-        padding: 20px;
+    .antes-depois-info h3 {
+        font-size: 1.1rem;
     }
     
-    .whatsapp-float, .nav-item {
+    .antes-depois-info p {
+        font-size: 0.9rem;
+    }
+    
+    .whatsapp-float {
         width: 55px;
         height: 55px;
+        bottom: 15px;
+        right: 15px;
     }
     
-    .whatsapp-float i, .nav-item i {
+    .whatsapp-float i {
         font-size: 26px;
     }
     
-    .nav-mobile {
-        bottom: 90px;
-        right: 20px;
+    .footer-logo-text {
+        font-size: 2.2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .antes-depois-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
     }
     
-    .container {
-        padding: 0 15px;
+    .antes-depois-item {
+        max-width: 100%;
+    }
+    
+    .antes-depois-imagens {
+        height: 220px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .antes-depois-container {
+        gap: 50px;
+    }
+    
+    .antes-depois-imagens {
+        height: 240px;
+        gap: 25px;
+        padding: 25px;
     }
 }
