@@ -40,6 +40,8 @@ body {
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
 }
 
 /* TEXTO DOURADO */
@@ -77,6 +79,7 @@ body {
   position: relative;
   z-index: 3;
   max-width: 500px;
+  width: 100%;
   padding: 40px 25px;
   background: rgba(26, 26, 26, 0.85);
   backdrop-filter: blur(10px);
@@ -84,6 +87,7 @@ body {
   border: 1px solid rgba(191, 163, 90, 0.2);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
   animation: fadeInUp 1s ease-out;
+  margin: 0 auto;
 }
 
 @keyframes fadeInUp {
@@ -183,8 +187,9 @@ body {
   font-size: 0.95rem;
   border: 1px solid rgba(191, 163, 90, 0.3);
   transition: all 0.3s ease;
-  width: 100%;
-  max-width: 200px;
+  max-width: 250px;
+  width: auto;
+  margin: 0 auto;
 }
 
 .btn-secondary:hover {
@@ -195,8 +200,7 @@ body {
 /* SEÇÕES */
 section {
   padding: 60px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .section-title {
@@ -204,20 +208,23 @@ section {
   margin-bottom: 40px;
   font-size: 2rem;
   font-weight: 600;
+  width: 100%;
 }
 
-/* CONTAINERS PARA MOBILE */
+/* CONTAINER PRINCIPAL */
 .container {
   width: 100%;
-  padding: 0 15px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* ANTES E DEPOIS - 2 IMAGENS POR LINHA */
-.antes-depois {
+/* ANTES E DEPOIS - 2 IMAGENS POR LINHA COM ESPAÇO */
+.antes-depois-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  width: 100%;
   margin-bottom: 40px;
 }
 
@@ -227,6 +234,9 @@ section {
   overflow: hidden;
   border: 1px solid var(--border);
   transition: transform 0.3s ease;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .antes-depois-item:hover {
@@ -236,18 +246,21 @@ section {
 .antes-depois-imagens {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2px;
+  gap: 10px;
   height: 180px;
+  padding: 10px;
 }
 
 .antes-depois-imagens img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .antes-depois-info {
   padding: 15px;
+  text-align: center;
 }
 
 .antes-depois-info h3 {
@@ -262,23 +275,63 @@ section {
   line-height: 1.5;
 }
 
-/* SOBRE RESUMIDO */
-.sobre-card {
+/* SOBRE COM IMAGEM */
+.sobre-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+.sobre-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .sobre-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.sobre-imagem {
+  flex: 0 0 200px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--gold1);
+  box-shadow: 0 0 25px rgba(191, 163, 90, 0.4);
+  margin: 0 auto;
+}
+
+.sobre-imagem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sobre-texto {
+  flex: 1;
   background: linear-gradient(160deg, var(--card), var(--soft));
   border-radius: 20px;
-  padding: 30px;
+  padding: 25px;
   border: 1px solid var(--border);
   box-shadow: 0 10px 30px var(--shadow);
 }
 
-.sobre-card p {
+.sobre-texto p {
   font-size: 1rem;
   line-height: 1.7;
   color: var(--text-light);
   margin-bottom: 20px;
 }
 
-.sobre-card strong {
+.sobre-texto strong {
   color: var(--gold2);
 }
 
@@ -305,6 +358,7 @@ section {
   overflow: hidden;
   margin: 30px 0;
   border: 1px solid var(--border);
+  width: 100%;
 }
 
 .mapa-container iframe {
@@ -321,6 +375,10 @@ section {
   background: rgba(191, 163, 90, 0.05);
   border-radius: 16px;
   border-left: 4px solid var(--gold1);
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .info-horario p {
@@ -340,6 +398,7 @@ footer {
   border-top: 1px solid var(--border);
   margin-top: 40px;
   background: linear-gradient(to top, var(--card), transparent);
+  width: 100%;
 }
 
 /* REDES SOCIAIS - BOTÕES MENORES */
@@ -348,6 +407,7 @@ footer {
   justify-content: center;
   gap: 15px;
   margin: 25px 0;
+  width: 100%;
 }
 
 .rede-social {
@@ -429,7 +489,7 @@ footer {
   transform: translateY(-3px);
 }
 
-/* RESPONSIVIDADE - SEMPRE 2 IMAGENS POR LINHA */
+/* RESPONSIVIDADE */
 @media (min-width: 768px) {
   .hero h1 {
     font-size: 3rem;
@@ -439,8 +499,9 @@ footer {
     font-size: 1.4rem;
   }
   
-  .antes-depois {
-    gap: 20px;
+  .antes-depois-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
   }
   
   .antes-depois-imagens {
@@ -452,23 +513,25 @@ footer {
   }
   
   .container {
-    max-width: 720px;
+    padding: 0 30px;
   }
 }
 
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
+@media (min-width: 1024px) {
+  .antes-depois-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
   }
   
-  .antes-depois {
-    grid-template-columns: repeat(2, 1fr);
+  .antes-depois-item {
+    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .hero-content {
     padding: 30px 20px;
+    margin: 0 15px;
   }
   
   .hero h1 {
@@ -482,14 +545,17 @@ footer {
   .btn-whatsapp {
     padding: 16px 30px;
     font-size: 1rem;
+    max-width: 280px;
   }
   
   .antes-depois-imagens {
     height: 150px;
+    gap: 8px;
+    padding: 8px;
   }
   
-  .sobre-card {
-    padding: 25px 20px;
+  .sobre-texto {
+    padding: 20px;
   }
   
   .whatsapp-float, .nav-item {
@@ -505,6 +571,33 @@ footer {
     bottom: 90px;
     right: 20px;
   }
+  
+  .container {
+    padding: 0 15px;
+  }
+}
+
+/* CORREÇÃO PARA IMAGENS NO GITHUB */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ESTILOS ESPECÍFICOS PARA IMAGENS LOCAIS */
+.local-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CENTRALIZAÇÃO DE CONTAINERS */
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 </style>
 </head>
@@ -515,10 +608,11 @@ footer {
 <div class="hero">
   <div class="hero-bg"></div>
   
-  <div class="hero-content container">
+  <div class="hero-content">
+    <!-- AQUI VOCÊ COLOCA SUA LOGO JPEG -->
     <div class="logo-container">
       <div class="logo-placeholder">
-        <img src="LogoH.jpeg" alt="HéricaHair" style="width:100%;height:100%;object-fit:cover;">
+<img src="logo.jpeg" alt="HéricaHair" class="local-image">
       </div>
     </div>
     
@@ -526,9 +620,11 @@ footer {
     <p class="hero-tagline">Transformação Capilar Profissional</p>
     <p class="hero-subtitle">Resultados que realçam sua beleza natural</p>
     
-    <a class="btn-whatsapp" href="https://wa.me/5511971289836" target="_blank">
-      <i class="fab fa-whatsapp"></i> AGENDAR AGORA
-    </a>
+    <div class="center-container">
+      <a class="btn-whatsapp" href="https://wa.me/5511971289836" target="_blank">
+        <i class="fab fa-whatsapp"></i> AGENDAR AGORA
+      </a>
+    </div>
   </div>
 </div>
 
@@ -537,12 +633,12 @@ footer {
   <div class="container">
     <h2 class="section-title gold">Transformações Reais</h2>
     
-    <div class="antes-depois">
+    <div class="antes-depois-container">
       <!-- EXEMPLO 1 -->
       <div class="antes-depois-item">
         <div class="antes-depois-imagens">
-          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Antes">
-          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Depois">
+          <img src="antes1.jpg" alt="Antes" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+          <img src="depois1.jpg" alt="Depois" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
         </div>
         <div class="antes-depois-info">
           <h3>Reconstrução Capilar</h3>
@@ -553,8 +649,8 @@ footer {
       <!-- EXEMPLO 2 -->
       <div class="antes-depois-item">
         <div class="antes-depois-imagens">
-          <img src="https://images.unsplash.com/photo-1526417501783-5d375490ad1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Antes">
-          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Depois">
+          <img src="antes2.jpg" alt="Antes" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1526417501783-5d375490ad1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+          <img src="depois2.jpg" alt="Depois" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
         </div>
         <div class="antes-depois-info">
           <h3>Colorimetria Dourada</h3>
@@ -565,8 +661,8 @@ footer {
       <!-- EXEMPLO 3 -->
       <div class="antes-depois-item">
         <div class="antes-depois-imagens">
-          <img src="https://images.unsplash.com/photo-1519690889869-e705e59f72e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Antes">
-          <img src="https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Depois">
+          <img src="antes3.jpg" alt="Antes" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1519690889869-e705e59f72e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+          <img src="depois3.jpg" alt="Depois" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
         </div>
         <div class="antes-depois-info">
           <h3>Progressiva Brasileira</h3>
@@ -577,8 +673,8 @@ footer {
       <!-- EXEMPLO 4 -->
       <div class="antes-depois-item">
         <div class="antes-depois-imagens">
-          <img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Antes">
-          <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Depois">
+          <img src="antes4.jpg" alt="Antes" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+          <img src="depois4.jpg" alt="Depois" class="local-image" onerror="this.src='https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
         </div>
         <div class="antes-depois-info">
           <h3>Corte e Finalização</h3>
@@ -587,7 +683,7 @@ footer {
       </div>
     </div>
     
-    <div style="text-align: center; margin-top: 30px;">
+    <div class="center-container" style="margin-top: 30px;">
       <a class="btn-secondary" href="https://www.instagram.com/_herica.hair_/" target="_blank">
         <i class="fab fa-instagram"></i> Ver mais no Instagram
       </a>
@@ -595,29 +691,47 @@ footer {
   </div>
 </section>
 
-<!-- SOBRE RESUMIDO -->
+<!-- SOBRE COM IMAGEM -->
 <section id="sobre">
   <div class="container">
-    <h2 class="section-title gold">Minha Especialidade</h2>
+    <h2 class="section-title gold">Sobre Mim</h2>
     
-    <div class="sobre-card">
-      <p>
-        Sou <strong>Hérica Vanessa</strong>, especialista em transformação capilar com mais de <strong>9 anos</strong> de experiência. 
-        Minha abordagem une técnica avançada, produtos de qualidade e um olhar atento para realçar a beleza única de cada cliente.
-      </p>
-      
-      <p>
-        Acredito que um bom trabalho capilar vai além da estética - é sobre autoestima, confiança e bem-estar. 
-        Por isso, priorizo a <strong>saúde dos fios</strong> em todos os procedimentos.
-      </p>
-      
-      <div class="especialidades">
-        <div class="especialidade-tag">Colorimetria</div>
-        <div class="especialidade-tag">Progressiva</div>
-        <div class="especialidade-tag">Botox Capilar</div>
-        <div class="especialidade-tag">Reconstrução</div>
-        <div class="especialidade-tag">Cortes</div>
-        <div class="especialidade-tag">Penteados</div>
+    <div class="sobre-container">
+      <div class="sobre-content">
+        <!-- AQUI VOCÊ COLOCA SUA FOTO PNG -->
+        <div class="sobre-imagem">
+          <!-- SUBSTITUA ESTE DIV PELA SUA FOTO -->
+          <div style="width:100%;height:100%;background:linear-gradient(45deg, var(--gold1), var(--gold2));display:flex;align-items:center;justify-content:center;color:#000;font-weight:bold;">
+            Minha Foto
+          </div>
+          <!-- <img src="sua-foto.png" alt="Hérica Vanessa" class="local-image"> -->
+        </div>
+        
+        <div class="sobre-texto">
+          <p>
+            Sou <strong>Hérica Vanessa</strong>, especialista em transformação capilar com mais de <strong>9 anos</strong> de experiência. 
+            Minha paixão pela beleza capilar começou cedo e hoje transformo cabelos em verdadeiras obras de arte.
+          </p>
+          
+          <p>
+            Minha filosofia é simples: <strong>saúde capilar em primeiro lugar</strong>. 
+            Cada procedimento é pensado para realçar sua beleza natural, respeitando a integridade dos fios.
+          </p>
+          
+          <p>
+            No meu espaço, você encontra não apenas técnica, mas também cuidado, atenção e um ambiente acolhedor 
+            onde sua autoestima é a prioridade.
+          </p>
+          
+          <div class="especialidades">
+            <div class="especialidade-tag">Colorimetria</div>
+            <div class="especialidade-tag">Progressiva</div>
+            <div class="especialidade-tag">Botox Capilar</div>
+            <div class="especialidade-tag">Reconstrução</div>
+            <div class="especialidade-tag">Cortes</div>
+            <div class="especialidade-tag">Penteados</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -638,7 +752,7 @@ footer {
       <p>Terça a Domingo, das 9h às 20h</p>
     </div>
     
-    <div style="text-align: center; margin-top: 30px;">
+    <div class="center-container" style="margin-top: 30px;">
       <a class="btn-secondary" href="https://wa.me/5511971289836" target="_blank">
         <i class="fas fa-directions"></i> Solicitar endereço
       </a>
@@ -713,7 +827,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // Anima os cards quando aparecem
-  const cards = document.querySelectorAll('.antes-depois-item, .sobre-card');
+  const cards = document.querySelectorAll('.antes-depois-item, .sobre-texto');
   cards.forEach(card => {
     card.style.opacity = 0;
     card.style.transform = 'translateY(30px)';
@@ -721,24 +835,23 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(card);
   });
   
-  // Efeito de hover nos itens antes/depois
-  const antesDepoisItems = document.querySelectorAll('.antes-depois-item');
-  antesDepoisItems.forEach(item => {
-    item.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-5px)';
-    });
-    
-    item.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0)';
-    });
-  });
-  
-  // Instruções para adicionar sua logo
-  console.log('💇‍♀️ INSTRUÇÕES PARA SUA LOGO:');
-  console.log('1. Substitua o conteúdo dentro da div "logo-container"');
-  console.log('2. Remova a div "logo-placeholder"');
-  console.log('3. Adicione sua logo JPEG assim:');
-  console.log('<img src="SUA-LOGO-AQUI.jpg" alt="HéricaHair" style="width:100%;height:100%;object-fit:contain;padding:10px;">');
+  // Instruções para adicionar suas imagens
+  console.log('📁 INSTRUÇÕES PARA IMAGENS LOCAIS NO GITHUB:');
+  console.log('1. Coloque suas imagens na mesma pasta do arquivo HTML');
+  console.log('');
+  console.log('2. Para a LOGO (JPEG):');
+  console.log('   - Nome sugerido: logo.jpg');
+  console.log('   - Substitua na linha 485: <img src="logo.jpg" alt="HéricaHair" class="local-image">');
+  console.log('');
+  console.log('3. Para sua FOTO (PNG):');
+  console.log('   - Nome sugerido: minha-foto.png');
+  console.log('   - Substitua na linha 543: <img src="minha-foto.png" alt="Hérica Vanessa" class="local-image">');
+  console.log('');
+  console.log('4. Para imagens ANTES/DEPOIS:');
+  console.log('   - Nomes sugeridos: antes1.jpg, depois1.jpg, antes2.jpg, etc.');
+  console.log('   - As imagens já estão configuradas para carregar localmente');
+  console.log('');
+  console.log('💡 DICA: As imagens do Unsplash são fallback caso suas imagens locais não carreguem');
 });
 </script>
 
