@@ -97,19 +97,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Verificar se a logo carregou - ATUALIZADO PARA PNG
+    // Verificar se a logo carregou - CORREÇÃO PARA PNG
     const logoImg = document.getElementById('logo-img');
     const logoFallback = document.getElementById('logo-fallback');
     
     if (logoImg) {
+        // Primeiro tenta carregar a logo
         logoImg.onload = function() {
             console.log('✅ Logo carregada com sucesso');
-            if (logoFallback) logoFallback.style.display = 'none';
+            if (logoFallback) {
+                logoFallback.style.display = 'none';
+                logoImg.style.display = 'block';
+            }
         };
         
         logoImg.onerror = function() {
             console.log('⚠️ Logo não encontrada, usando fallback');
-            if (logoFallback) logoFallback.style.display = 'flex';
+            if (logoFallback) {
+                logoFallback.style.display = 'flex';
+                logoImg.style.display = 'none';
+            }
             
             // Tentar caminhos alternativos para PNG
             setTimeout(() => {
@@ -121,7 +128,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     'LogoH.PNG',
                     './LogoH.PNG',
                     'logo.png',
-                    './logo.png'
+                    './logo.png',
+                    'LogoH.jpg',
+                    './LogoH.jpg',
+                    'logoH.jpg',
+                    './logoH.jpg'
                 ];
                 
                 let currentIndex = 0;
@@ -137,6 +148,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 tryNextPath();
             }, 1000);
         };
+        
+        // Forçar tentativa de carregamento
+        logoImg.src = 'LogoH.png';
+    }
+    
+    // Verificar logo da navbar também
+    const navbarLogoImg = document.querySelector('.navbar-logo-img');
+    if (navbarLogoImg) {
+        navbarLogoImg.onload = function() {
+            console.log('✅ Logo da navbar carregada com sucesso');
+            document.querySelector('.navbar-logo-fallback').style.display = 'none';
+            this.style.display = 'block';
+        };
+        
+        navbarLogoImg.onerror = function() {
+            console.log('⚠️ Logo da navbar não encontrada');
+            document.querySelector('.navbar-logo-fallback').style.display = 'flex';
+            this.style.display = 'none';
+        };
+        
+        // Forçar tentativa de carregamento
+        navbarLogoImg.src = 'LogoH.png';
     }
     
     // Configurar animações de scroll
@@ -221,11 +254,12 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('├── minha-foto.png (sua foto)');
     console.log('├── antes1.jpg, depois1.jpg, etc.');
     console.log('');
-    console.log('🎨 DETALHES ADICIONADOS:');
-    console.log('- Fundo com elementos decorativos (tesouras, pentes, etc)');
-    console.log('- Animações fluidas no menu mobile');
-    console.log('- Lightbox corrigido para cada imagem');
-    console.log('- Design mais rico e detalhado');
+    console.log('🎨 CORREÇÕES APLICADAS:');
+    console.log('- Logo maior na navbar (55px)');
+    console.log('- Logo agora preenche a moldura (object-fit: cover)');
+    console.log('- Sistema corrigido para carregamento da logo central');
+    console.log('- Imagens com cores neutras para melhor identificação');
+    console.log('- Cada imagem amplia corretamente ao clicar');
 });
 
 // Funções para o Lightbox - CORRIGIDO PARA IMAGENS INDIVIDUAIS
@@ -317,3 +351,41 @@ document.getElementById('lightbox').addEventListener('click', function(e) {
         fecharLightbox();
     }
 });
+
+// Adicionar estilos para melhor visualização das imagens
+const style = document.createElement('style');
+style.textContent = `
+    /* Dicas visuais para as imagens */
+    .antes-depois-imagens img {
+        transition: filter 0.3s ease;
+    }
+    
+    .antes-depois-imagens img:hover {
+        filter: brightness(1.1);
+    }
+    
+    /* Indicador visual para imagens clicáveis */
+    .imagem-container {
+        position: relative;
+    }
+    
+    .imagem-container::after {
+        content: 'Clique para ampliar';
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: var(--gold2);
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+    
+    .imagem-container:hover::after {
+        opacity: 1;
+    }
+`;
+document.head.appendChild(style);
