@@ -123,9 +123,9 @@ body {
 
 /* LOGO NA NAVBAR - MAIOR E PREENCHENDO MAIS ESPAÇO */
 .navbar-logo {
-    width: 85px;
-    height: 85px;
-    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border-radius: 40%;
     overflow: hidden;
     border: 2px solid var(--gold1);
     display: flex;
@@ -1196,5 +1196,6 @@ footer {
         padding: 20px;
     }
 }
+
 
 
