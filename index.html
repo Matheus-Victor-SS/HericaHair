@@ -10,18 +10,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- ELEMENTOS DECORATIVOS DE FUNDO -->
+    <div class="background-elements">
+        <div class="bg-icon"><i class="fas fa-scissors"></i></div>
+        <div class="bg-icon"><i class="fas fa-comb"></i></div>
+        <div class="bg-icon"><i class="fas fa-spray-can-sparkles"></i></div>
+        <div class="bg-icon"><i class="fas fa-cut"></i></div>
+        <div class="bg-icon"><i class="fas fa-hair-clipper"></i></div>
+        <div class="bg-icon"><i class="fas fa-hand-sparkles"></i></div>
+        <div class="bg-icon"><i class="fas fa-star"></i></div>
+        <div class="bg-icon"><i class="fas fa-circle"></i></div>
+        <div class="bg-icon"><i class="fas fa-square"></i></div>
+        <div class="bg-icon"><i class="fas fa-heart"></i></div>
+    </div>
+
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="navbar-container">
             <!-- Logo pequena na navbar -->
             <div class="navbar-logo">
-                <img src="logoH.jpeg" alt="HéricaHair" class="navbar-logo-img" 
+                <img src="LogoH.png" alt="HéricaHair" class="navbar-logo-img" 
                      onerror="this.style.display='none'; document.querySelector('.navbar-logo-fallback').style.display='flex';">
                 <div class="navbar-logo-fallback">HH</div>
             </div>
             
             <!-- Menu de navegação -->
-            <ul class="navbar-menu">
+            <ul class="navbar-menu" id="navbarMenu">
                 <li><a href="#trabalhos">Transformações</a></li>
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#localizacao">Localização</a></li>
@@ -44,7 +58,7 @@
         <div class="hero-content">
             <!-- Logo central -->
             <div class="logo-container">
-                <img src="logoH.jpeg" alt="HéricaHair" class="logo-img" id="logo-img">
+                <img src="LogoH.png" alt="HéricaHair" class="logo-img" id="logo-img">
                 <div class="logo-fallback" id="logo-fallback">HH</div>
             </div>
             
@@ -96,7 +110,7 @@
                 <!-- EXEMPLO 2 -->
                 <div class="antes-depois-item">
                     <div class="antes-depois-imagens">
-                        <div class="imagem-container" onclick="abrirLightbox('antes2.jpg', 'Colorimetria - Antes')">
+                        <div class="imagem-container" onclick="abrirLightbox('antes2.jpg', 'Colorimetria Dourada - Antes')">
                             <span class="imagem-label">ANTES</span>
                             <img src="antes2.jpg" alt="Antes - Colorimetria" class="local-image"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1526417501783-5d375490ad1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
@@ -104,7 +118,7 @@
                                 <i class="fas fa-search-plus"></i>
                             </div>
                         </div>
-                        <div class="imagem-container" onclick="abrirLightbox('depois2.jpg', 'Colorimetria - Depois')">
+                        <div class="imagem-container" onclick="abrirLightbox('depois2.jpg', 'Colorimetria Dourada - Depois')">
                             <span class="imagem-label">DEPOIS</span>
                             <img src="depois2.jpg" alt="Depois - Colorimetria" class="local-image"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
@@ -122,7 +136,7 @@
                 <!-- EXEMPLO 3 -->
                 <div class="antes-depois-item">
                     <div class="antes-depois-imagens">
-                        <div class="imagem-container" onclick="abrirLightbox('antes3.jpg', 'Progressiva - Antes')">
+                        <div class="imagem-container" onclick="abrirLightbox('antes3.jpg', 'Progressiva Brasileira - Antes')">
                             <span class="imagem-label">ANTES</span>
                             <img src="antes3.jpg" alt="Antes - Progressiva" class="local-image"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519690889869-e705e59f72e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
@@ -130,7 +144,7 @@
                                 <i class="fas fa-search-plus"></i>
                             </div>
                         </div>
-                        <div class="imagem-container" onclick="abrirLightbox('depois3.jpg', 'Progressiva - Depois')">
+                        <div class="imagem-container" onclick="abrirLightbox('depois3.jpg', 'Progressiva Brasileira - Depois')">
                             <span class="imagem-label">DEPOIS</span>
                             <img src="depois3.jpg" alt="Depois - Progressiva" class="local-image"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
@@ -148,7 +162,7 @@
                 <!-- EXEMPLO 4 -->
                 <div class="antes-depois-item">
                     <div class="antes-depois-imagens">
-                        <div class="imagem-container" onclick="abrirLightbox('antes4.jpg', 'Corte - Antes')">
+                        <div class="imagem-container" onclick="abrirLightbox('antes4.jpg', 'Corte e Finalização - Antes')">
                             <span class="imagem-label">ANTES</span>
                             <img src="antes4.jpg" alt="Antes - Corte" class="local-image"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
@@ -156,7 +170,7 @@
                                 <i class="fas fa-search-plus"></i>
                             </div>
                         </div>
-                        <div class="imagem-container" onclick="abrirLightbox('depois4.jpg', 'Corte - Depois')">
+                        <div class="imagem-container" onclick="abrirLightbox('depois4.jpg', 'Corte e Finalização - Depois')">
                             <span class="imagem-label">DEPOIS</span>
                             <img src="depois4.jpg" alt="Depois - Corte" class="local-image"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
