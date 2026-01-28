@@ -199,6 +199,17 @@ document.addEventListener('DOMContentLoaded', function() {
         container.addEventListener('mouseleave', function() {
             this.style.transform = 'scale(1)';
         });
+        
+        // Para mobile
+        container.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.98)';
+        });
+        
+        container.addEventListener('touchend', function() {
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+        });
     });
     
     // Instruções para o usuário
@@ -218,45 +229,73 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Funções para o Lightbox - CORRIGIDO PARA IMAGENS INDIVIDUAIS
-function abrirLightbox(src, caption) {
+function abrirLightbox(src, caption, element) {
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
     const lightboxCaption = document.getElementById('lightbox-caption');
     
     console.log(`Abrindo lightbox: ${src}`);
     
+    // Obter a imagem clicada
+    const clickedImage = element.querySelector('img');
+    
+    // Verificar se temos uma imagem válida
+    let imageSrc = src;
+    if (clickedImage && clickedImage.src && clickedImage.src !== window.location.href) {
+        // Usar o src atual da imagem (pode ser o fallback)
+        imageSrc = clickedImage.src;
+    }
+    
     // Mostrar lightbox imediatamente com loading
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
     lightboxImage.src = '';
+    lightboxImage.classList.remove('loaded');
     lightboxCaption.textContent = 'Carregando...';
     
     // Carregar imagem
     const img = new Image();
     img.onload = function() {
-        lightboxImage.src = src;
+        lightboxImage.src = imageSrc;
         lightboxCaption.textContent = caption;
-        console.log(`✅ Imagem carregada: ${src}`);
+        
+        setTimeout(() => {
+            lightboxImage.classList.add('loaded');
+        }, 50);
     };
     
     img.onerror = function() {
-        console.log(`❌ Erro ao carregar: ${src}`);
-        
         // Fallback baseado no tipo de imagem
         let fallbackSrc;
-        if (src.includes('antes')) {
+        if (src.includes('antes1')) {
             fallbackSrc = 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
-        } else if (src.includes('depois')) {
+        } else if (src.includes('depois1')) {
             fallbackSrc = 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
+        } else if (src.includes('antes2')) {
+            fallbackSrc = 'https://images.unsplash.com/photo-1526417501783-5d375490ad1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
+        } else if (src.includes('depois2')) {
+            fallbackSrc = 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
+        } else if (src.includes('antes3')) {
+            fallbackSrc = 'https://images.unsplash.com/photo-1519690889869-e705e59f72e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
+        } else if (src.includes('depois3')) {
+            fallbackSrc = 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
+        } else if (src.includes('antes4')) {
+            fallbackSrc = 'https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
+        } else if (src.includes('depois4')) {
+            fallbackSrc = 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
         } else {
             fallbackSrc = 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
         }
         
         lightboxImage.src = fallbackSrc;
         lightboxCaption.textContent = caption + ' (imagem ilustrativa)';
+        
+        setTimeout(() => {
+            lightboxImage.classList.add('loaded');
+        }, 50);
     };
     
-    img.src = src;
+    img.src = imageSrc;
 }
 
 function fecharLightbox() {
