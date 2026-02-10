@@ -654,22 +654,25 @@ section {
 }
 
 .sobre-imagem {
-    flex: 0 0 200px;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid var(--gold1);
-    box-shadow: 0 0 25px rgba(191, 163, 90, 0.4);
-    margin: 0 auto;
-    position: relative;
+    width: 140px;          /* tamanho menor */
+    height: auto;
+    border-radius: 0;      /* remove o círculo */
+    overflow: visible;
+    border: none;          /* remove a borda */
+    box-shadow: none;      /* remove a sombra */
+    margin: 0 auto -15px;  /* aproxima do texto abaixo */
+    background: none;
 }
+
 
 .sobre-imagem img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0;
+    display: block;
 }
+
 
 .foto-fallback {
     width: 100%;
@@ -687,6 +690,7 @@ section {
     background: linear-gradient(160deg, var(--card), var(--soft));
     border-radius: 20px;
     padding: 30px;
+    padding-top: 20px;
     border: 1px solid var(--border);
     box-shadow: 0 10px 30px var(--shadow);
 }
@@ -1194,6 +1198,7 @@ footer {
         padding: 20px;
     }
 }
+
 
 
 
