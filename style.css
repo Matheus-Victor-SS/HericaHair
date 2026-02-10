@@ -660,7 +660,7 @@ section {
     overflow: visible;
     border: none;          /* remove a borda */
     box-shadow: none;      /* remove a sombra */
-    margin: 0 auto -15px;  /* aproxima do texto abaixo */
+    margin: 0 auto -1px;  /* aproxima do texto abaixo */
     background: none;
 }
 
@@ -1197,6 +1197,7 @@ footer {
         padding: 20px;
     }
 }
+
 
 
 
