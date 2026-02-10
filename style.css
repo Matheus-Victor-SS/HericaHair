@@ -690,7 +690,6 @@ section {
     background: linear-gradient(160deg, var(--card), var(--soft));
     border-radius: 20px;
     padding: 30px;
-    padding-top: 20px;
     border: 1px solid var(--border);
     box-shadow: 0 10px 30px var(--shadow);
 }
@@ -1198,6 +1197,7 @@ footer {
         padding: 20px;
     }
 }
+
 
 
 
