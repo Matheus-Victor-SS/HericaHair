@@ -1198,12 +1198,9 @@ footer {
     }
 }
 @media (max-width: 768px) {
-    .sobre-imagem {
-        top: 50px;
-    }
-
-    .sobre-texto {
-        padding-top: 80px;
+    #sobre {
+        margin-top: -80px;
+        padding-top: 40px;
     }
 }
 
