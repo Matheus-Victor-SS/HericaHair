@@ -306,20 +306,6 @@ document.addEventListener('DOMContentLoaded', function() {
             this.blur();
         });
     });
-    
-    // Instruções para o usuário
-    console.log('📁 ESTRUTURA DE ARQUIVOS:');
-    console.log('├── index.html');
-    console.log('├── style.css');
-    console.log('├── script.js');
-    console.log('├── LogoH.png (sua logo - IMPORTANTE!)');
-    console.log('├── minha-foto.png (sua foto)');
-    console.log('├── antes1.jpg, depois1.jpg, etc.');
-    console.log('');
-    console.log('🎨 CORREÇÕES APLICADAS:');
-    console.log('- Logos maiores (85-90% dos containers)');
-    console.log('- Removido outline azul de todos os elementos clicáveis');
-    console.log('- Sistema otimizado para mobile e desktop');
 });
 
 // Funções para o Lightbox
@@ -457,3 +443,4 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
