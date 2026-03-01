@@ -7,16 +7,6 @@
 
 ---
 
-## 🚀 Status
-
-![Status](https://img.shields.io/badge/status-ativo-success)
-![Responsivo](https://img.shields.io/badge/responsive-100%25-mobile-blue)
-![Frontend](https://img.shields.io/badge/frontend-HTML%2FCSS%2FJS-orange)
-![Deploy](https://img.shields.io/badge/deploy-static-brightgreen)
-![License](https://img.shields.io/badge/license-uso%20privado-lightgrey)
-
----
-
 ## 📌 Sobre o Projeto
 
 O **HéricaHair** é um site institucional desenvolvido para apresentar serviços de transformação capilar, com foco principal em:
